@@ -1,0 +1,13 @@
+// ImplementMapreducesoperationwithsuitableexampleusingMongoDB.
+
+db.createCollection('class');
+ db.class.insert({'id':1,'sec':'A','marks':90});
+ db.class.insert({'id':1,'sec':'B','marks':88});
+ db.class.insert({'id':2,'sec':'A','marks':82});
+ db.class.insert({'id':3,'sec':'A','marks':75});
+ db.class.insert({'id':2,'sec':'B','marks':78});
+ db.class.find().pretty();
+ var map=function(){emit(this.sec,this.marks)};
+ var reduce=function(key,value){return Array.sum(value);};
+ db.class.mapReduce(map,reduce,{out:'Result'});
+ db.Result.find().pretty();

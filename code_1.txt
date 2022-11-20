@@ -1,0 +1,34 @@
+--ProblemStatement:DesignandDevelopSQLDDLstatementsonSchemagiven.--
+
+--create table--
+create table employee_master(
+emp_id int not null primary key,
+first_name varchar(255),middle varchar(255),last_name varchar(255),department varchar(255),managerid int
+);
+
+create table branch_master(
+branch_id int not null primary key, branch_name varchar(255)
+);
+
+--create a sequence to generate branch id
+create sequence seq start with 1 increment by 1;
+--create a sequence to generate employee id
+create sequence branch_seq start with 1 increment by 1;
+--insert
+INSERT INTO branch_master
+VALUES (seq.nextval,'Mumbai');
+INSERT INTO branch_master
+VALUES (seq.nextval,'Pune');
+--insert 
+INSERT INTO employee_master
+VALUES (branch_seq.nextval,'Tony','Howard','Stark','Computer',3);
+
+--create view
+create view emp1 as select emp_id,first_name,middle,last_name,department,managerid from employee_master;
+
+--create index
+CREATE INDEX emp_name ON employee_master(first_name);
+
+
+select * from employee_master;
+select * from branch_master;

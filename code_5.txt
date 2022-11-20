@@ -1,0 +1,59 @@
+-- DemonstratealltypesofJOINonfollowing
+-- schemacustomer(customer_id,first_name)
+-- orders(order_id,amount,customer_id);
+
+
+CREATE TABLE Customer(
+  customer_id int,
+  first_name varchar(255)
+  );
+ 
+ CREATE TABLE orders(
+  order_id int,
+  amount int,
+  customer_id int
+  );
+
+INSERT INTO Customer (customer_id,first_name)
+VALUES (101,'John');
+INSERT INTO Customer (customer_id,first_name)
+VALUES (102,'James');
+INSERT INTO Customer (customer_id,first_name)
+VALUES (103,'Sanjay');
+INSERT INTO Customer (customer_id,first_name)
+VALUES (104,'Aditya');
+
+INSERT INTO Orders (order_id,amount,customer_id)
+VALUES (1001,5000,101);
+INSERT INTO Orders (order_id,amount,customer_id)
+VALUES (1002,4000,102);
+INSERT INTO Orders (order_id,amount,customer_id)
+VALUES (1003,6000,103);
+
+--Inner Join
+
+SELECT Customer.customer_id, Customer.first_name, Orders.amount
+FROM Customer
+INNER JOIN Orders
+ON Customer.customer_id = Orders.customer_id;
+
+--Left Join
+
+SELECT Customer.customer_id, Customer.first_name, Orders.amount
+FROM Customer
+LEFT JOIN Orders
+ON Customer.customer_id = Orders.customer_id;
+
+--Right Join
+
+SELECT Customer.customer_id, Customer.first_name, Orders.amount
+FROM Customer
+RIGHT JOIN Orders
+ON Customer.customer_id = Orders.customer_id;
+
+--Full Outer Join
+
+SELECT Customer.customer_id, Customer.first_name, Orders.amount
+FROM Customer
+FULL OUTER JOIN Orders
+ON Customer.customer_id = Orders.customer_id;

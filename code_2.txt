@@ -1,0 +1,42 @@
+-- ProblemStatement:DesignfollowingSQLDMLstatements:
+-- Createauniversity/collegedatabasecontainingfollowingtablesStudent(stud_idi,deptnm,sem,name,yr,credits)
+-- Teaches(teacher_id,teacher_name,salary,deptnm)
+-- 1.Insertrecordsintoalltables.
+-- 2.UpdaterecordonstudenttablesasdepartmentnamecomptoIT.
+-- 3.Findthedepartmentthathashighestoraveragesalary
+-- 4.Deletetherecordsofallteacherwithsalarybelow2000.
+-- 5.Findthesumofsalaryofeachdepartment(usegroupby).
+
+create table student(studid integer primary key,deptname varchar(20),sem varchar(20),name varchar(20),year integer,credits integer);
+create table teachers(teacherid integer primary key,teachername varchar(20),salary integer,deptname varchar(20));
+
+
+ insert into student values(1,'comp','second','sahil',1,90);
+ insert into student values(2,'comp','fourth','dev',2,80);
+ insert into student values(3,'comp','third','jatin',3,70);
+
+ select * from student;
+
+ insert into teachers values(1,'MD',10000,'comp');
+ insert into teachers values(2,'poi',1000,'It');
+ insert into teachers values(3,'vina',20000,'civil');
+
+ select * from teachers;
+
+ update student set deptname='IT' where deptname='comp';
+
+ select * from student;
+
+ insert into teachers values(4,'asmita',30000,'comp');
+
+ select * from teachers;
+
+select deptname,max(salary),avg(salary) from teachers group by deptname ;
+ select deptname from teachers where salary=30000 ;
+ select deptname from teachers where salary=30000 or salary=1000 ;
+
+ delete from teachers where salary<2000;
+
+ select * from teachers;
+
+ select deptname,sum(salary) from teachers group by deptname;
